@@ -30,3 +30,10 @@ This repository contains the practical implementation for the master's thesis by
 Aleksandr Shabanov  
 Supervisor: prof. RNDr. Jiří Witzany, Ph.D.  
 Prague University of Economics and Business, 2025
+
+## Training set Column Description
+- `K` | Strike price of the option
+- `T` | Time to maturity (in years)
+- `barrier` | Barrier level (only for barrier options; NaN for others)
+- `type` | Option type: "asian", "barrier", or "lookback"
+- `price` | Simulated option price (discounted payoff using Bates model)
