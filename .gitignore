@@ -1,25 +1,28 @@
-# Byte-compiled / optimized / DLL files
+# === Python ===
 __pycache__/
 *.py[cod]
 *.so
 
-# Virtual environment
+# === Virtual Environment ===
 .venv/
 env/
 venv/
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
+# === Jupyter ===
+.ipynb_checkpoints/
 
-# Data
+# === Logs ===
+logs/
+*.log
+
+# === Results (только временные файлы, но сохраняем графики) ===
+results/*.log
+results/*.txt
+
+# === Ignore datasets except .gitkeep ===
 data/raw/*
 !data/raw/.gitkeep
 
-# Logs and results
-logs/
-results/
-*.log
-
-# OS files
+# === System Files ===
 .DS_Store
 Thumbs.db
