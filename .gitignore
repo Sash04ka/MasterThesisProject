@@ -15,14 +15,6 @@ venv/
 logs/
 *.log
 
-# === Results (только временные файлы, но сохраняем графики) ===
-results/*.log
-results/*.txt
-
-# === Ignore datasets except .gitkeep ===
-data/raw/*
-!data/raw/.gitkeep
-
 # === System Files ===
 .DS_Store
 Thumbs.db
