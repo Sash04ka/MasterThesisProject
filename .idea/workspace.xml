@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0a60059-875d-443c-9a4f-0df0ac40f095" name="Changes" comment="prepared but did not split a traning set defined fetures X and target Y" />
+    <list default="true" id="e0a60059-875d-443c-9a4f-0df0ac40f095" name="Changes" comment="Trained a basic model">
+      <change afterPath="$PROJECT_DIR$/code/compare_mc_vs_mlp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/evaluate_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/plot_option_surfaces.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/generate_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/generate_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/preprocess_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/preprocess_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/train_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/X.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/y.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/option_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mlp_option_pricing.pth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/figs/Bates 1000 Paths Simulated.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/figs/all_bates_paths.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/figs/avg_price_vs_barrier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/figs/bates_paths.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/figs/price_vs_K_T.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/figs/price_vs_barrier.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +61,7 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2w68njIZlVPtl929ehzHNYFMtMc" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -49,11 +70,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.bates_model.executor": "Run",
+    "Python.compare_mc_vs_mlp.executor": "Run",
+    "Python.evaluate_model.executor": "Run",
     "Python.generate_dataset.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.payoffs.executor": "Run",
+    "Python.plot_option_surfaces.executor": "Run",
+    "Python.predict.executor": "Run",
     "Python.preprocess_dataset.executor": "Run",
     "Python.train_model.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Admin/MasterThesisProject/results/figs",
@@ -73,6 +101,29 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.train_model">
+    <configuration name="bates_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MasterThesisProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/bates_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="generate_dataset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MasterThesisProject" />
       <option name="ENV_FILES" value="" />
@@ -96,7 +147,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="payoffs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MasterThesisProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,12 +156,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/payoffs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,15 +221,16 @@
         <item itemvalue="Python.train_model" />
         <item itemvalue="Python.preprocess_dataset" />
         <item itemvalue="Python.generate_dataset" />
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.payoffs" />
+        <item itemvalue="Python.bates_model" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.24807.21" />
-        <option value="bundled-python-sdk-00717045f1d3-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.24807.21" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
+        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
       </set>
     </attachedChunks>
   </component>
@@ -194,7 +246,9 @@
       <workItem from="1745354209025" duration="92000" />
       <workItem from="1745354829855" duration="3295000" />
       <workItem from="1745358367215" duration="1277000" />
-      <workItem from="1745359734011" duration="3991000" />
+      <workItem from="1745359734011" duration="4354000" />
+      <workItem from="1745364460830" duration="986000" />
+      <workItem from="1745388549581" duration="15654000" />
     </task>
     <task id="LOCAL-00001" summary="Added README.md and requirements.txt...">
       <option name="closed" value="true" />
@@ -252,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745363755849</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Trained a basic model">
+      <option name="closed" value="true" />
+      <created>1745363947778</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745363947778</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,12 +324,19 @@
     <MESSAGE value="Added README.md and requirements.txt..." />
     <MESSAGE value="Added README.md and requirements.txt...&#10;Added Utils" />
     <MESSAGE value="prepared but did not split a traning set defined fetures X and target Y" />
-    <option name="LAST_COMMIT_MESSAGE" value="prepared but did not split a traning set defined fetures X and target Y" />
+    <MESSAGE value="Trained a basic model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trained a basic model" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MasterThesisProject$generate_dataset.coverage" NAME="generate_dataset Coverage Results" MODIFIED="1745361991479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$preprocess_dataset.coverage" NAME="preprocess_dataset Coverage Results" MODIFIED="1745363574934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$predict.coverage" NAME="predict Coverage Results" MODIFIED="1745403276915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$bates_model.coverage" NAME="bates_model Coverage Results" MODIFIED="1745403752885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$payoffs.coverage" NAME="payoffs Coverage Results" MODIFIED="1745403755979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/MasterThesisProject$main.coverage" NAME="main Coverage Results" MODIFIED="1745361466088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$train_model.coverage" NAME="train_model Coverage Results" MODIFIED="1745363667540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$compare_mc_vs_mlp.coverage" NAME="compare_mc_vs_mlp Coverage Results" MODIFIED="1745400082116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$plot_option_surfaces.coverage" NAME="plot_option_surfaces Coverage Results" MODIFIED="1745403718634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$generate_dataset.coverage" NAME="generate_dataset Coverage Results" MODIFIED="1745404435764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$preprocess_dataset.coverage" NAME="preprocess_dataset Coverage Results" MODIFIED="1745402102816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$evaluate_model.coverage" NAME="evaluate_model Coverage Results" MODIFIED="1745403130277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$train_model.coverage" NAME="train_model Coverage Results" MODIFIED="1745402113542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
   </component>
 </project>
