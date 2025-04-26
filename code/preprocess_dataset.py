@@ -1,21 +1,21 @@
 import pandas as pd
 import os
 
-# === Определение пути до корня проекта ===
+# === Define project root path ===
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 data_path = os.path.join(project_root, "data", "raw", "option_dataset.csv")
 
-# === Загрузка исходного датасета ===
+# === Load raw dataset ===
 df = pd.read_csv(data_path)
 
-# === One-hot encoding для типа опциона ===
+# === One-hot encoding for option type ===
 df_encoded = pd.get_dummies(df, columns=["type"])
 
-# === Формирование X и y ===
-X = df_encoded.drop(columns=["price"]).fillna(0)  # заполняем NaN в barrier нулями
+# === Create features X and target y ===
+X = df_encoded.drop(columns=["price"]).fillna(0)  # fill NaN in barrier with 0
 y = df_encoded["price"]
 
-# === Сохранение X и y ===
+# === Save X and y ===
 processed_path = os.path.join(project_root, "data", "processed")
 os.makedirs(processed_path, exist_ok=True)
 

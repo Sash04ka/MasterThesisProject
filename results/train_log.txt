@@ -1,0 +1,20 @@
+Epoch 0, Loss: 78.6599
+Epoch 10, Loss: 1.5298
+Epoch 20, Loss: 1.2921
+Epoch 30, Loss: 0.6330
+Epoch 40, Loss: 0.1380
+Epoch 50, Loss: 0.5414
+Epoch 60, Loss: 0.1296
+Epoch 70, Loss: 0.9431
+Epoch 80, Loss: 0.1166
+Epoch 90, Loss: 0.1117
+
+✅ Test RMSE: 0.5119
+✅ Test R2 Score: 0.9928
+Saving model to: C:\Users\Admin\MasterThesisProject\models\mlp_option_pricing.pth
+✅ Model saved to C:\Users\Admin\MasterThesisProject\models\mlp_option_pricing.pth
+✅ Scaler saved to C:\Users\Admin\MasterThesisProject\models\scaler.pkl
+✅ Test data saved to:
+C:\Users\Admin\MasterThesisProject\data\processed\X_test.csv
+C:\Users\Admin\MasterThesisProject\data\processed\y_test.csv
+👋 Finished train_model.py

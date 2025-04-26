@@ -7,16 +7,46 @@ from sklearn.metrics import mean_squared_error, r2_score
 import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
+import joblib
+import sys
+from config import EPOCHS, BATCH_SIZE
 
-# === Load data ===
+# === Redirect stdout to log file ===
 try:
     script_dir = os.path.dirname(os.path.abspath(__file__))
 except NameError:
     script_dir = os.getcwd()
 
 project_root = os.path.abspath(os.path.join(script_dir, ".."))
-data_dir = os.path.join(project_root, "data", "processed")
+log_path = os.path.join(project_root, "results", "train_log.txt")
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
+class DualWriter:
+    def __init__(self, file):
+        self.terminal = sys.__stdout__
+        self.file = file
+        self.closed = False
+
+    def write(self, message):
+        self.terminal.write(message)
+        if not self.closed:
+            self.file.write(message)
+
+    def flush(self):
+        self.terminal.flush()
+        if not self.closed:
+            self.file.flush()
+
+    def close(self):
+        if not self.closed:
+            self.file.close()
+            self.closed = True
+
+log_file = open(log_path, "w", encoding="utf-8")
+sys.stdout = DualWriter(log_file)
+
+# === Load data ===
+data_dir = os.path.join(project_root, "data", "processed")
 X = pd.read_csv(os.path.join(data_dir, "X.csv"))
 y = pd.read_csv(os.path.join(data_dir, "y.csv"))
 
@@ -54,11 +84,10 @@ model = MLP(input_dim=X_train.shape[1])
 # === Training setup ===
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-dataloader = DataLoader(TensorDataset(X_train_tensor, y_train_tensor), batch_size=32, shuffle=True)
+dataloader = DataLoader(TensorDataset(X_train_tensor, y_train_tensor), batch_size=BATCH_SIZE, shuffle=True)
 
 # === Training loop ===
-epochs = 100
-for epoch in range(epochs):
+for epoch in range(EPOCHS):
     model.train()
     for xb, yb in dataloader:
         optimizer.zero_grad()
@@ -92,4 +121,19 @@ try:
 except Exception as e:
     print(f"❌ Failed to save model: {e}", flush=True)
 
+# === Save scaler ===
+scaler_path = os.path.join(project_root, "models", "scaler.pkl")
+joblib.dump(scaler, scaler_path)
+print(f"✅ Scaler saved to {scaler_path}", flush=True)
+# === Save test set for evaluation ===
+X_test_path = os.path.join(data_dir, "X_test.csv")
+y_test_path = os.path.join(data_dir, "y_test.csv")
+X_test.to_csv(X_test_path, index=False)
+y_test.to_csv(y_test_path, index=False)
+print(f"✅ Test data saved to:\n{X_test_path}\n{y_test_path}", flush=True)
+
+
 print("👋 Finished train_model.py", flush=True)
+
+# === Close log ===
+sys.stdout.close()

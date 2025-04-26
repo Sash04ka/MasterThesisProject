@@ -1,8 +1,10 @@
 import numpy as np
+from config import S0, v0
+
 
 def simulate_bates_paths(
-    S0=100,
-    v0=0.04,
+    S0=S0,
+    v0=v0,
     r=0.0,
     kappa=2.0,
     theta=0.04,
@@ -14,17 +16,26 @@ def simulate_bates_paths(
     T=1.0,
     N=252,
     M=10000,
-    seed=42  # default is reproducible
+    seed=None
 ):
     """
-    Simulates asset price and volatility paths using the Bates model with jumps.
+    Simulates asset price and variance paths using the Bates model.
 
     Args:
-        seed (int or None): Random seed for reproducibility. Set to None for random output.
+        S0 (float): Initial asset price
+        v0 (float): Initial variance
+        r (float): Risk-free interest rate
+        kappa, theta, sigma_v (floats): Heston variance process parameters
+        rho (float): Correlation between price and volatility shocks
+        lambda_jump, mu_jump, sigma_jump (floats): Jump process parameters
+        T (float): Time to maturity
+        N (int): Number of time steps
+        M (int): Number of paths
+        seed (int or None): Random seed for reproducibility
 
     Returns:
-        S (np.ndarray): Simulated asset prices of shape (M, N+1)
-        v (np.ndarray): Simulated variances of shape (M, N+1)
+        S (np.ndarray): Simulated asset price paths of shape (M, N+1)
+        v (np.ndarray): Simulated variance paths of shape (M, N+1)
     """
     if seed is not None:
         np.random.seed(seed)
