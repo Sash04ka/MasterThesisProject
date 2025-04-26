@@ -21,8 +21,8 @@ for opt_type in option_types:
     df_type = df[df["type"] == opt_type].copy()
     df_type["moneyness"] = df_type["K"] / S0
 
-    X = df_type["moneyness"]
-    Y = df_type["T"]
+    X = df_type["T"]
+    Y = df_type["moneyness"]
     Z = df_type["price"]
 
     fig = plt.figure(figsize=(8, 6))

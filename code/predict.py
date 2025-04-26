@@ -4,6 +4,8 @@ import numpy as np
 import os
 from joblib import load
 from sklearn.preprocessing import StandardScaler
+from utils.bates_model import simulate_bates_paths
+from utils.payoffs import asian_call_payoff, barrier_call_payoff, lookback_call_payoff
 
 # === Input Parameters ===
 print("--- Enter Option Parameters ---")
@@ -61,9 +63,22 @@ model = MLP(input_dim=9)
 model.load_state_dict(torch.load(model_path))
 model.eval()
 
-# === Predict ===
+# === Predict with MLP ===
 with torch.no_grad():
     x_tensor = torch.tensor(X_scaled, dtype=torch.float32)
     y_pred = model(x_tensor).item()
 
-print(f"\n💰 Predicted option price: {y_pred:.4f}")
+print(f"\n💰 MLP Predicted option price: {y_pred:.4f}")
+
+# === Monte Carlo Comparison ===
+print("\n⏳ Simulating Monte Carlo price...")
+S, _ = simulate_bates_paths(M=5000, T=T, seed=123)
+
+if option_type == "asian":
+    mc_price = np.mean(asian_call_payoff(S, strike=K, r=0.0, T=T))
+elif option_type == "barrier":
+    mc_price = np.mean(barrier_call_payoff(S, strike=K, barrier=barrier, r=0.0, T=T))
+elif option_type == "lookback":
+    mc_price = np.mean(lookback_call_payoff(S, r=0.0, T=T))
+
+print(f"🎲 Monte Carlo estimated price: {mc_price:.4f}")

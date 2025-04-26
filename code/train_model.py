@@ -125,6 +125,13 @@ except Exception as e:
 scaler_path = os.path.join(project_root, "models", "scaler.pkl")
 joblib.dump(scaler, scaler_path)
 print(f"✅ Scaler saved to {scaler_path}", flush=True)
+# === Save test set for evaluation ===
+X_test_path = os.path.join(data_dir, "X_test.csv")
+y_test_path = os.path.join(data_dir, "y_test.csv")
+X_test.to_csv(X_test_path, index=False)
+y_test.to_csv(y_test_path, index=False)
+print(f"✅ Test data saved to:\n{X_test_path}\n{y_test_path}", flush=True)
+
 
 print("👋 Finished train_model.py", flush=True)
 

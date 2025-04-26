@@ -16,15 +16,19 @@ scaler_path = os.path.join(project_root, "models", "scaler.pkl")
 results_dir = os.path.join(project_root, "results", "evaluation")
 os.makedirs(results_dir, exist_ok=True)
 
-# === Load data ===
-X = pd.read_csv(os.path.join(data_dir, "X.csv"))
-y = pd.read_csv(os.path.join(data_dir, "y.csv"))
+# === Load test data ===
+X = pd.read_csv(os.path.join(data_dir, "X_test.csv"))
+y = pd.read_csv(os.path.join(data_dir, "y_test.csv"))
 y = y.iloc[:, 0]  # ensure Series
 
 # === Load scaler and transform ===
 scaler = load(scaler_path)
-X_scaled = scaler.transform(X)
+X_scaled = scaler.transform(X)  # No fit! Just transform.
 X_tensor = torch.tensor(X_scaled, dtype=torch.float32)
+
+print(f"Loaded {len(X)} samples for evaluation")
+print(X.head())
+
 
 # === Define model ===
 class MLP(torch.nn.Module):

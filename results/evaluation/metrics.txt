@@ -1,3 +1,0 @@
-📊 Evaluation Metrics:
-RMSE: 0.0199
-R2 Score: 1.0000
