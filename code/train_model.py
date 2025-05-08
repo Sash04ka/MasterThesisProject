@@ -113,7 +113,7 @@ except Exception as e:
 
 # === Save trained model ===
 try:
-    model_path = os.path.join(project_root, "models", "mlp_option_pricing.pth")
+    model_path = os.path.join(project_root, "model", "mlp_option_pricing.pth")
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     print(f"Saving model to: {model_path}", flush=True)
     torch.save(model.state_dict(), model_path)
@@ -122,7 +122,7 @@ except Exception as e:
     print(f"❌ Failed to save model: {e}", flush=True)
 
 # === Save scaler ===
-scaler_path = os.path.join(project_root, "models", "scaler.pkl")
+scaler_path = os.path.join(project_root, "model", "scaler.pkl")
 joblib.dump(scaler, scaler_path)
 print(f"✅ Scaler saved to {scaler_path}", flush=True)
 # === Save test set for evaluation ===

@@ -43,22 +43,22 @@ def barrier_call_payoff(price_paths: np.ndarray, strike: float, barrier: float, 
     return discounted
 
 
-def lookback_call_payoff(price_paths: np.ndarray, r: float, T: float) -> np.ndarray:
+def lookback_call_payoff(price_paths: np.ndarray, strike: float, r: float, T: float) -> np.ndarray:
     """
-    Computes discounted payoff for a lookback call option (based on the minimum price).
+    Computes discounted payoff for a lookback call option with fixed strike.
 
-    Payoff is max(S_T - min(S), 0)
+    Payoff is max(Max(S) - Strike, 0)
 
     Args:
         price_paths (np.ndarray): Simulated asset price paths, shape (M, N+1)
+        strike (float): Strike price (fixed at option creation)
         r (float): Risk-free interest rate
         T (float): Time to maturity
 
     Returns:
         np.ndarray: Discounted lookback option payoffs, shape (M,)
     """
-    S_T = price_paths[:, -1]
-    S_min = np.min(price_paths, axis=1)
-    payoffs = np.maximum(S_T - S_min, 0)
+    S_max = np.max(price_paths, axis=1)
+    payoffs = np.maximum(S_max - strike, 0)
     discounted = np.exp(-r * T) * payoffs
     return discounted

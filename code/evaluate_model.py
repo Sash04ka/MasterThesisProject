@@ -11,8 +11,8 @@ from joblib import load
 # === Paths ===
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 data_dir = os.path.join(project_root, "data", "processed")
-model_path = os.path.join(project_root, "models", "mlp_option_pricing.pth")
-scaler_path = os.path.join(project_root, "models", "scaler.pkl")
+model_path = os.path.join(project_root, "model", "mlp_option_pricing.pth")
+scaler_path = os.path.join(project_root, "model", "scaler.pkl")
 results_dir = os.path.join(project_root, "results", "evaluation")
 os.makedirs(results_dir, exist_ok=True)
 

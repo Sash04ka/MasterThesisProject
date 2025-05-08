@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0a60059-875d-443c-9a4f-0df0ac40f095" name="Changes" comment="completed" />
+    <list default="true" id="e0a60059-875d-443c-9a4f-0df0ac40f095" name="Changes" comment="completed">
+      <change afterPath="$PROJECT_DIR$/code/append_mre_to_summary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/compare_mc_vs_mlp_structured.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/mlp_option_pricing.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/epochsgraph.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vol_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/compare_mc_vs_mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/compare_mc_vs_mlp_random.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/evaluate_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/evaluate_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/generate_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/generate_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/plot_option_surfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/plot_option_surfaces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/train_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/X.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/X.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/X_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/X_test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/y.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/y.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/processed/y_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/processed/y_test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/option_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/option_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mlp_option_pricing.pth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/scaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/model/scaler.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/benchmark_comparison/sample_comparison.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/benchmark_comparison/sample_comparison.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/benchmark_comparison/summary_metrics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/benchmark_comparison/summary_metrics.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/evaluation/asian_option_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/evaluation/barrier_option_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/evaluation/lookback_option_surface.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/train_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/train_log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bates_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/bates_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/payoffs.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/payoffs.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +48,32 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Config-Branch" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -52,41 +107,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.bates_model.executor&quot;: &quot;Run&quot;,
-    &quot;Python.compare_mc_vs_mlp.executor&quot;: &quot;Run&quot;,
-    &quot;Python.evaluate_model.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_dataset.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.payoffs.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plot_bates_paths.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plot_option_surfaces.executor&quot;: &quot;Run&quot;,
-    &quot;Python.predict.executor&quot;: &quot;Run&quot;,
-    &quot;Python.preprocess_dataset.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train_model.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Config-Branch&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/MasterThesisProject/results/figs&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.append_mre_to_summary.executor": "Run",
+    "Python.bates_model.executor": "Debug",
+    "Python.compare_mc_vs_mlp.executor": "Run",
+    "Python.compare_mc_vs_mlp_structured.executor": "Run",
+    "Python.epochsgraph.executor": "Run",
+    "Python.evaluate_model.executor": "Run",
+    "Python.generate_dataset.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.payoffs.executor": "Run",
+    "Python.plot_bates_paths.executor": "Run",
+    "Python.plot_option_surfaces.executor": "Run",
+    "Python.predict.executor": "Run",
+    "Python.preprocess_dataset.executor": "Run",
+    "Python.train_model.executor": "Run",
+    "Python.vol_check.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "supervisor-feedback-update",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Admin/MasterThesisProject/results/figs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\MasterThesisProject\code" />
       <recent name="C:\Users\Admin\MasterThesisProject\data\raw" />
       <recent name="C:\Users\Admin\MasterThesisProject\results\figs" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.plot_option_surfaces">
-    <configuration name="compare_mc_vs_mlp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.predict">
+    <configuration name="append_mre_to_summary" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MasterThesisProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,7 +160,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/compare_mc_vs_mlp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/append_mre_to_summary.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -109,7 +169,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="evaluate_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="compare_mc_vs_mlp_structured" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MasterThesisProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,7 +183,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/evaluate_model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/compare_mc_vs_mlp_structured.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,7 +192,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="plot_bates_paths" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="epochsgraph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MasterThesisProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,12 +201,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/results" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/plot_bates_paths.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/results/epochsgraph.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -203,11 +263,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.plot_option_surfaces" />
-        <item itemvalue="Python.plot_bates_paths" />
         <item itemvalue="Python.predict" />
-        <item itemvalue="Python.compare_mc_vs_mlp" />
-        <item itemvalue="Python.evaluate_model" />
+        <item itemvalue="Python.plot_option_surfaces" />
+        <item itemvalue="Python.append_mre_to_summary" />
+        <item itemvalue="Python.epochsgraph" />
+        <item itemvalue="Python.compare_mc_vs_mlp_structured" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +295,12 @@
       <workItem from="1745364460830" duration="986000" />
       <workItem from="1745388549581" duration="26899000" />
       <workItem from="1745565384472" duration="191000" />
-      <workItem from="1745678724642" duration="336000" />
+      <workItem from="1745678724642" duration="7994000" />
+      <workItem from="1745855072537" duration="3464000" />
+      <workItem from="1745872819978" duration="1523000" />
+      <workItem from="1745924926770" duration="633000" />
+      <workItem from="1746191384107" duration="79000" />
+      <workItem from="1746704781819" duration="19615000" />
     </task>
     <task id="LOCAL-00001" summary="Added README.md and requirements.txt...">
       <option name="closed" value="true" />
@@ -333,11 +398,30 @@
       <option name="project" value="LOCAL" />
       <updated>1745678785651</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="completed">
+      <option name="closed" value="true" />
+      <created>1745679234345</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745679234345</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added README.md and requirements.txt..." />
@@ -350,16 +434,20 @@
     <option name="LAST_COMMIT_MESSAGE" value="completed" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MasterThesisProject$plot_bates_paths.coverage" NAME="plot_bates_paths Coverage Results" MODIFIED="1745410298514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$bates_model.coverage" NAME="bates_model Coverage Results" MODIFIED="1745403752885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$predict.coverage" NAME="predict Coverage Results" MODIFIED="1745410221463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$payoffs.coverage" NAME="payoffs Coverage Results" MODIFIED="1745403755979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$vol_check.coverage" NAME="vol_check Coverage Results" MODIFIED="1745688941632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$bates_model.coverage" NAME="bates_model Coverage Results" MODIFIED="1745689174479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$predict.coverage" NAME="predict Coverage Results" MODIFIED="1746724374276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$compare_mc_vs_mlp_structured.coverage" NAME="compare_mc_vs_mlp_structured Coverage Results" MODIFIED="1746710191228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/MasterThesisProject$main.coverage" NAME="main Coverage Results" MODIFIED="1745361466088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$compare_mc_vs_mlp.coverage" NAME="compare_mc_vs_mlp Coverage Results" MODIFIED="1745409529253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$generate_dataset.coverage" NAME="generate_dataset Coverage Results" MODIFIED="1745408434857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$plot_option_surfaces.coverage" NAME="plot_option_surfaces Coverage Results" MODIFIED="1745410510242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$preprocess_dataset.coverage" NAME="preprocess_dataset Coverage Results" MODIFIED="1745408587210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$compare_mc_vs_mlp.coverage" NAME="compare_mc_vs_mlp Coverage Results" MODIFIED="1746708225967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$generate_dataset.coverage" NAME="generate_dataset Coverage Results" MODIFIED="1746707550682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/MasterThesisProject$evaluate_model.coverage" NAME="evaluate_model Coverage Results" MODIFIED="1745409480771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/MasterThesisProject$train_model.coverage" NAME="train_model Coverage Results" MODIFIED="1745408623277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$plot_bates_paths.coverage" NAME="plot_bates_paths Coverage Results" MODIFIED="1745410298514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$payoffs.coverage" NAME="payoffs Coverage Results" MODIFIED="1745403755979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$epochsgraph.coverage" NAME="epochsgraph Coverage Results" MODIFIED="1746710996760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/results" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$append_mre_to_summary.coverage" NAME="append_mre_to_summary Coverage Results" MODIFIED="1746711672455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$plot_option_surfaces.coverage" NAME="plot_option_surfaces Coverage Results" MODIFIED="1746722428915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$preprocess_dataset.coverage" NAME="preprocess_dataset Coverage Results" MODIFIED="1746707970159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/MasterThesisProject$train_model.coverage" NAME="train_model Coverage Results" MODIFIED="1746708029969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
   </component>
 </project>
