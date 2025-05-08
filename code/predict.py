@@ -9,40 +9,56 @@ from utils.payoffs import asian_call_payoff, barrier_call_payoff, lookback_call_
 
 # === Input Parameters ===
 print("--- Enter Option Parameters ---")
-K = float(input("Strike price K (e.g. 100): "))
-T = float(input("Time to maturity T in years (e.g. 1.0 = 1 year): "))
+K = float(input("Strike price K (suggested range: 50–150): "))
+if not (50 <= K <= 150):
+    print("⚠️ Warning: K is outside the model's training range [50–150]")
+
+T = float(input("Time to maturity T in years (suggested range: 0.1–5.0): "))
+if not (0.1 <= T <= 5.0):
+    print("⚠️ Warning: T is outside the model's training range [0.1–5.0]")
 
 valid_types = ["asian", "barrier", "lookback"]
 option_type = ""
 while option_type not in valid_types:
     option_type = input("Option type (asian / barrier / lookback): ").strip().lower()
 
-barrier = float(input("Barrier level (only if applicable): ")) if option_type == "barrier" else 0.0
+barrier = 0.0
+if option_type == "barrier":
+    barrier = float(input("Barrier level (suggested: 100–200): "))
+    if not (100 <= barrier <= 200):
+        print("⚠️ Warning: Barrier level is outside training range [100–200]")
 
-print("--- Volatility Characteristics ---")
-vol_mean_pct = float(input("Average volatility over path (in %, e.g. 20 for 20%): "))
-vol_T_pct = float(input("Volatility at maturity (in %): "))
-vol_std_pct = float(input("Volatility std deviation (in %): "))
+# === Volatility Inputs ===
+print("\n--- Volatility Characteristics ---")
+print("Please enter volatility values as percentages (e.g. for 20% type 20)")
+vol_mean_pct = float(input("Average volatility over path (suggested: 15%–30%): "))
+vol_T_pct = float(input("Volatility at maturity (suggested: 15%–30%): "))
+vol_std_pct = float(input("Volatility standard deviation (suggested: 7%–17%): "))
 
-# Convert % to variance
-vol_mean = (vol_mean_pct / 100)**2
-vol_T = (vol_T_pct / 100)**2
-vol_std = (vol_std_pct / 100)**2
+if not (15 <= vol_mean_pct <= 30):
+    print("⚠️ Warning: Average volatility is outside recommended [15–30]%")
+if not (15 <= vol_T_pct <= 30):
+    print("⚠️ Warning: Volatility at maturity is outside recommended [15–30]%")
+if not (7 <= vol_std_pct <= 17):
+    print("⚠️ Warning: Volatility std is outside recommended [7–17]%")
+
+# === Convert % to variance ===
+vol_mean = (vol_mean_pct / 100) ** 2
+vol_T = (vol_T_pct / 100) ** 2
+vol_std = (vol_std_pct / 100) ** 2
 
 # === One-hot encode type ===
 type_encoded = [1.0 if t == option_type else 0.0 for t in valid_types]
 
-# === Prepare input as DataFrame ===
+# === Prepare input DataFrame ===
 x_input = pd.DataFrame([[K, T, barrier, vol_mean, vol_T, vol_std] + type_encoded],
-                       columns=["K", "T", "barrier", "vol_mean", "vol_T", "vol_std", "type_asian", "type_barrier", "type_lookback"])
+    columns=["K", "T", "barrier", "vol_mean", "vol_T", "vol_std", "type_asian", "type_barrier", "type_lookback"])
 
-# === Load scaler ===
+# === Load scaler and model ===
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-scaler_path = os.path.join(project_root, "models", "scaler.pkl")
-scaler = load(scaler_path)
+scaler = load(os.path.join(project_root, "model", "scaler.pkl"))
 X_scaled = scaler.transform(x_input)
 
-# === Define model ===
 class MLP(torch.nn.Module):
     def __init__(self, input_dim):
         super(MLP, self).__init__()
@@ -53,14 +69,11 @@ class MLP(torch.nn.Module):
             torch.nn.ReLU(),
             torch.nn.Linear(32, 1)
         )
-
     def forward(self, x):
         return self.model(x)
 
-# === Load model ===
-model_path = os.path.join(project_root, "models", "mlp_option_pricing.pth")
 model = MLP(input_dim=9)
-model.load_state_dict(torch.load(model_path))
+model.load_state_dict(torch.load(os.path.join(project_root, "model", "mlp_option_pricing.pth")))
 model.eval()
 
 # === Predict with MLP ===
@@ -72,13 +85,14 @@ print(f"\n💰 MLP Predicted option price: {y_pred:.4f}")
 
 # === Monte Carlo Comparison ===
 print("\n⏳ Simulating Monte Carlo price...")
-S, _ = simulate_bates_paths(M=5000, T=T, seed=123)
+N = int(252 * T)
+S, _ = simulate_bates_paths(M=1000, N=N, T=T, seed=123)
 
 if option_type == "asian":
     mc_price = np.mean(asian_call_payoff(S, strike=K, r=0.0, T=T))
 elif option_type == "barrier":
     mc_price = np.mean(barrier_call_payoff(S, strike=K, barrier=barrier, r=0.0, T=T))
 elif option_type == "lookback":
-    mc_price = np.mean(lookback_call_payoff(S, r=0.0, T=T))
+    mc_price = np.mean(lookback_call_payoff(S, strike=K, r=0.0, T=T))
 
 print(f"🎲 Monte Carlo estimated price: {mc_price:.4f}")

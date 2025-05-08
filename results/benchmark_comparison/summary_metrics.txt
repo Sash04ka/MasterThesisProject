@@ -1,12 +1,12 @@
 📊 Evaluation Metrics:
-RMSE: 1.7273
-R2 Score: 0.9210
-Mean Absolute Error: 1.3029
-MSE: 2.9836
-Max Absolute Error: 5.2317
-Median Absolute Error: 1.0063
+RMSE: 1.2476
+R2 Score: 0.9957
+Mean Absolute Error: 0.8714
+MSE: 1.5565
+Max Absolute Error: 10.0476
+Median Absolute Error: 0.5588
 
 ⚡ Speed Comparison:
-Monte Carlo total time: 101.45 s
-MLP average per sample: 0.19 ms
-MLP is approximately 1058.0x faster than MC
+Monte Carlo total time: 508.90 s
+MLP average per sample: 0.14 ms
+MLP is approximately 1251.8x faster than MC

@@ -12,7 +12,7 @@ from config import N_SAMPLES, M_MC, S0, v0, K_MIN, K_MAX, T_MIN, T_MAX, BARRIER_
 
 # === Load scaler and model ===
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-scaler = load(os.path.join(project_root, "models", "scaler.pkl"))
+scaler = load(os.path.join(project_root, "model", "scaler.pkl"))
 
 class MLP(torch.nn.Module):
     def __init__(self, input_dim):
@@ -29,7 +29,7 @@ class MLP(torch.nn.Module):
         return self.model(x)
 
 model = MLP(input_dim=9)
-model.load_state_dict(torch.load(os.path.join(project_root, "models", "mlp_option_pricing.pth")))
+model.load_state_dict(torch.load(os.path.join(project_root, "model", "mlp_option_pricing.pth")))
 model.eval()
 
 # === Run comparison ===
@@ -59,7 +59,7 @@ for _ in range(N_SAMPLES):
         barrier_val = barrier
         type_enc = [0, 1, 0]
     elif opt_type == "lookback":
-        mc_price = np.mean(lookback_call_payoff(S, r=0.0, T=T))
+        mc_price = np.mean(lookback_call_payoff(S, strike=K, r=0.0, T=T))
         barrier_val = 0.0
         type_enc = [0, 0, 1]
 

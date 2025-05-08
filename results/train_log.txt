@@ -1,16 +1,16 @@
-Epoch 0, Loss: 78.6599
-Epoch 10, Loss: 1.5298
-Epoch 20, Loss: 1.2921
-Epoch 30, Loss: 0.6330
-Epoch 40, Loss: 0.1380
-Epoch 50, Loss: 0.5414
-Epoch 60, Loss: 0.1296
-Epoch 70, Loss: 0.9431
-Epoch 80, Loss: 0.1166
-Epoch 90, Loss: 0.1117
+Epoch 0, Loss: 101.0754
+Epoch 10, Loss: 1.9168
+Epoch 20, Loss: 1.0479
+Epoch 30, Loss: 2.2806
+Epoch 40, Loss: 7.2814
+Epoch 50, Loss: 1.5513
+Epoch 60, Loss: 1.2302
+Epoch 70, Loss: 1.4285
+Epoch 80, Loss: 0.7345
+Epoch 90, Loss: 1.2517
 
-✅ Test RMSE: 0.5119
-✅ Test R2 Score: 0.9928
+✅ Test RMSE: 0.9852
+✅ Test R2 Score: 0.9978
 Saving model to: C:\Users\Admin\MasterThesisProject\models\mlp_option_pricing.pth
 ✅ Model saved to C:\Users\Admin\MasterThesisProject\models\mlp_option_pricing.pth
 ✅ Scaler saved to C:\Users\Admin\MasterThesisProject\models\scaler.pkl
