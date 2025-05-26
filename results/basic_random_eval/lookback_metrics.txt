@@ -1,0 +1,4 @@
+RMSE: 1.4636
+MAE: 1.1045
+R²: 0.9598
+Relative Error (%): 18.37
