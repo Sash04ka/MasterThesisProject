@@ -10,9 +10,9 @@ from joblib import load
 
 # === Paths ===
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-data_dir = os.path.join(project_root, "data", "processed")
-model_path = os.path.join(project_root, "model", "mlp_option_pricing.pth")
-scaler_path = os.path.join(project_root, "model", "scaler.pkl")
+data_dir = os.path.join(project_root, "data")
+model_path = os.path.join(project_root, "models", "mlp_option_pricing.pth")
+scaler_path = os.path.join(project_root, "models", "scaler.pkl")
 results_dir = os.path.join(project_root, "results", "evaluation")
 os.makedirs(results_dir, exist_ok=True)
 
@@ -27,10 +27,8 @@ X_scaled = scaler.transform(X)  # No fit! Just transform.
 X_tensor = torch.tensor(X_scaled, dtype=torch.float32)
 
 print(f"Loaded {len(X)} samples for evaluation")
-print(X.head())
 
-
-# === Define model ===
+# === Define models ===
 class MLP(torch.nn.Module):
     def __init__(self, input_dim):
         super(MLP, self).__init__()
@@ -65,12 +63,12 @@ plt.figure(figsize=(12, 5))
 # True vs Predicted
 plt.subplot(1, 2, 1)
 sns.scatterplot(x=y_true, y=y_pred, s=20, alpha=0.4, color="blue", edgecolor=None)
-plt.plot([0, 20], [0, 20], '--r')
+plt.plot([0, max(y_true)], [0, max(y_true)], '--r')
 plt.xlabel("True Price")
 plt.ylabel("Predicted Price")
 plt.title("True vs Predicted Option Prices")
-plt.xlim(0, 20)
-plt.ylim(0, 20)
+plt.xlim(0, max(y_true))
+plt.ylim(0, max(y_pred))
 
 # Residuals
 plt.subplot(1, 2, 2)
@@ -78,7 +76,6 @@ sns.histplot(residuals, bins=40, kde=True, color="gray")
 plt.title("Residuals Distribution (Predicted - True)")
 plt.xlabel("Residual")
 plt.ylabel("Frequency")
-plt.xlim(-1, 1)
 
 # Save figure
 fig_path = os.path.join(results_dir, "evaluation_results.png")

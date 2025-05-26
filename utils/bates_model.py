@@ -18,23 +18,7 @@ def simulate_bates_paths(
     seed=None
 ):
     """
-    Simulates asset price and variance paths using the Bates model with jumps and stochastic volatility.
-
-    Args:
-        S0 (float): Initial asset price
-        v0 (float): Initial variance
-        r (float): Risk-free interest rate
-        kappa (float): Mean reversion speed of variance
-        theta (float): Long-term mean of variance
-        sigma_v (float): Volatility of variance (vol-of-vol)
-        rho (float): Correlation between asset and variance shocks
-        lambda_jump (float): Jump intensity (Poisson process)
-        mu_jump (float): Mean jump size
-        sigma_jump (float): Standard deviation of jump size
-        T (float): Time to maturity
-        N (int): Number of time steps
-        M (int): Number of simulation paths
-        seed (int or None): Random seed for reproducibility
+    Simulates asset price and variance paths using the Bates models with jumps and stochastic volatility.
 
     Returns:
         S (np.ndarray): Simulated asset price paths of shape (M, N+1)

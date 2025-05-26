@@ -4,28 +4,27 @@ import os
 from tqdm import tqdm
 from utils.bates_model import simulate_bates_paths
 from utils.payoffs import asian_call_payoff, barrier_call_payoff, lookback_call_payoff
-from utils.implied_volatility import implied_volatility_call  # your existing function
+from utils.implied_volatility import implied_volatility_call
 
-# Constants and paths
+# === Constants ===
 S0 = 100
 r = 0.02
 M_MC = 1000
-
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-data_dir = os.path.join(project_root, "data")
-os.makedirs(data_dir, exist_ok=True)
+sample_target = 200
+max_attempts_per_type = 10000
 
 K_choices = np.arange(80, 125, 5)
 T_choices = [1/12, 3/12, 6/12, 9/12, 1.0]
 moneyness_grid = [0.8, 0.9, 1.0, 1.1, 1.2]
-
 price_threshold = 1.0
 vol_min = 0.05
 vol_max = 1.0
-min_filtered_samples = 3000
-max_attempts_per_type = 100000  # to avoid infinite loops
 
 option_types = ['asian', 'barrier', 'lookback']
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+data_dir = os.path.join(project_root, "data")
+os.makedirs(data_dir, exist_ok=True)
 
 def compute_payoff(option_type, S, K, r, T, barrier=None):
     if option_type == 'asian':
@@ -39,17 +38,16 @@ def compute_payoff(option_type, S, K, r, T, barrier=None):
 
 for option_type in option_types:
     records = []
-    filtered_count = 0
-    total_attempts = 0
-    pbar = tqdm(total=min_filtered_samples, desc=f"Generating filtered {option_type} samples")
+    attempts = 0
+    pbar = tqdm(total=sample_target, desc=f"Generating {option_type}_random")
 
-    while filtered_count < min_filtered_samples and total_attempts < max_attempts_per_type:
-        total_attempts += 1
+    while len(records) < sample_target and attempts < max_attempts_per_type:
+        attempts += 1
         K = np.random.choice(K_choices)
         T = np.random.choice(T_choices)
         N = int(252 * T)
 
-        # Random Bates params
+        # Random Bates parameters
         v0 = np.random.uniform(0.01, 0.09)
         theta = np.random.uniform(0.01, 0.09)
         sigma_v = np.random.uniform(0.1, 0.6)
@@ -59,23 +57,20 @@ for option_type in option_types:
         mu_jump = np.random.uniform(-0.1, 0.0)
         sigma_jump = np.random.uniform(0.1, 0.4)
 
-        S, v = simulate_bates_paths(
+        S, _ = simulate_bates_paths(
             M=M_MC, N=N, T=T, S0=S0, r=r,
             v0=v0, theta=theta, sigma_v=sigma_v, kappa=kappa,
             rho=rho, lambda_jump=lambda_jump,
             mu_jump=mu_jump, sigma_jump=sigma_jump
         )
 
-        # Compute barrier if needed
         barrier = None
         if option_type == 'barrier':
             raw_barrier = np.random.uniform(1.1, 1.4) * max(S0, K)
             barrier = np.clip(raw_barrier, 105, 180)
 
-        # Calculate price for the sampled option
         price = np.mean(compute_payoff(option_type, S, K, r, T, barrier))
 
-        # Compute smile features by implied volatility inversion
         smile = {}
         for m in moneyness_grid:
             for t in T_choices:
@@ -85,7 +80,6 @@ for option_type in option_types:
                 iv = implied_volatility_call(price_m, S0, K_m, t, r)
                 smile[f"sigma_{int(m * 100):03d}_{int(t * 12)}m"] = iv
 
-        # Filtering
         if price <= price_threshold:
             continue
         if any(np.isnan(list(smile.values()))):
@@ -93,7 +87,6 @@ for option_type in option_types:
         if not all(vol_min <= v <= vol_max for v in smile.values()):
             continue
 
-        # Save filtered sample
         row = {
             "type": option_type,
             "K": K,
@@ -106,16 +99,10 @@ for option_type in option_types:
             row['barrier'] = barrier
 
         records.append(row)
-        filtered_count += 1
         pbar.update(1)
 
     pbar.close()
-
-    if filtered_count < min_filtered_samples:
-        print(f"Warning: only {filtered_count} {option_type} samples generated after {total_attempts} attempts.")
-
-    df_filtered = pd.DataFrame(records)
-    filename = f"option_dataset_{option_type}_filtered.csv"
-    output_path = os.path.join(data_dir, filename)
-    df_filtered.to_csv(output_path, index=False)
-    print(f"✅ Saved {filtered_count} filtered {option_type} samples to {output_path}")
+    df = pd.DataFrame(records)
+    filename = f"option_dataset_{option_type}_random.csv"
+    df.to_csv(os.path.join(data_dir, filename), index=False)
+    print(f"✅ Saved {len(records)} samples to {filename}")

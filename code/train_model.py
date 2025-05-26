@@ -1,139 +1,86 @@
+import os
 import pandas as pd
 import numpy as np
-import os
+import torch
+import torch.nn as nn
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
-import torch
-import torch.nn as nn
-from torch.utils.data import TensorDataset, DataLoader
-import joblib
-import sys
-from config import EPOCHS, BATCH_SIZE
+from mlp_model import MLP
 
-# === Redirect stdout to log file ===
-try:
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-except NameError:
-    script_dir = os.getcwd()
+# === Train one model ===
+def train_model(option_type, extra_features):
+    print(f"\n🚀 Training model for {option_type.upper()} options")
 
-project_root = os.path.abspath(os.path.join(script_dir, ".."))
-log_path = os.path.join(project_root, "results", "train_log.txt")
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    # Absolute paths
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    data_path = os.path.join(project_root, "data", f"option_dataset_{option_type}_filtered.csv")
+    model_dir = os.path.join(project_root, "models")
+    os.makedirs(model_dir, exist_ok=True)
 
-class DualWriter:
-    def __init__(self, file):
-        self.terminal = sys.__stdout__
-        self.file = file
-        self.closed = False
+    # Load data
+    df = pd.read_csv(data_path)
+    y = df["price"]
+    X = df.drop(columns=["type", "price"])
 
-    def write(self, message):
-        self.terminal.write(message)
-        if not self.closed:
-            self.file.write(message)
+    # Feature columns
+    smile_cols = [col for col in X.columns if col.startswith("sigma_")]
+    feature_cols = smile_cols + ["K", "T", "r"] + extra_features
+    X = X[feature_cols]
 
-    def flush(self):
-        self.terminal.flush()
-        if not self.closed:
-            self.file.flush()
+    # Split and scale
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    scaler_X = StandardScaler().fit(X_train)
+    scaler_y = StandardScaler().fit(y_train.values.reshape(-1, 1))
 
-    def close(self):
-        if not self.closed:
-            self.file.close()
-            self.closed = True
+    X_train_scaled = torch.tensor(scaler_X.transform(X_train), dtype=torch.float32)
+    X_test_scaled = torch.tensor(scaler_X.transform(X_test), dtype=torch.float32)
+    y_train_scaled = torch.tensor(scaler_y.transform(y_train.values.reshape(-1, 1)), dtype=torch.float32)
+    y_test_scaled = torch.tensor(scaler_y.transform(y_test.values.reshape(-1, 1)), dtype=torch.float32)
 
-log_file = open(log_path, "w", encoding="utf-8")
-sys.stdout = DualWriter(log_file)
+    # Initialize model
+    model = MLP(input_dim=X.shape[1])
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    loss_fn = nn.MSELoss()
 
-# === Load data ===
-data_dir = os.path.join(project_root, "data", "processed")
-X = pd.read_csv(os.path.join(data_dir, "X.csv"))
-y = pd.read_csv(os.path.join(data_dir, "y.csv"))
-
-# === Train-test split ===
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# === Normalize features ===
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
-# === Convert to PyTorch tensors ===
-X_train_tensor = torch.tensor(X_train_scaled, dtype=torch.float32)
-y_train_tensor = torch.tensor(y_train.values, dtype=torch.float32)
-X_test_tensor = torch.tensor(X_test_scaled, dtype=torch.float32)
-y_test_tensor = torch.tensor(y_test.values, dtype=torch.float32)
-
-# === Define MLP model ===
-class MLP(nn.Module):
-    def __init__(self, input_dim):
-        super(MLP, self).__init__()
-        self.model = nn.Sequential(
-            nn.Linear(input_dim, 64),
-            nn.ReLU(),
-            nn.Linear(64, 32),
-            nn.ReLU(),
-            nn.Linear(32, 1)
-        )
-
-    def forward(self, x):
-        return self.model(x)
-
-model = MLP(input_dim=X_train.shape[1])
-
-# === Training setup ===
-criterion = nn.MSELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-dataloader = DataLoader(TensorDataset(X_train_tensor, y_train_tensor), batch_size=BATCH_SIZE, shuffle=True)
-
-# === Training loop ===
-for epoch in range(EPOCHS):
-    model.train()
-    for xb, yb in dataloader:
+    # Training loop
+    for epoch in range(100):
+        model.train()
         optimizer.zero_grad()
-        preds = model(xb).squeeze()
-        loss = criterion(preds, yb.squeeze())
+        loss = loss_fn(model(X_train_scaled), y_train_scaled)
         loss.backward()
         optimizer.step()
-    if epoch % 10 == 0:
-        print(f"Epoch {epoch}, Loss: {loss.item():.4f}", flush=True)
+        if epoch % 10 == 0:
+            model.eval()
+            val_loss = loss_fn(model(X_test_scaled), y_test_scaled).item()
+            print(f"Epoch {epoch:03d} | Val Loss: {val_loss:.4f}")
 
-# === Evaluation ===
-try:
+    # === Evaluation ===
     model.eval()
     with torch.no_grad():
-        y_pred = model(X_test_tensor).squeeze().numpy()
-        y_true = y_test.squeeze().values
-        rmse = np.sqrt(mean_squared_error(y_true, y_pred))
-        r2 = r2_score(y_true, y_pred)
-        print(f"\n✅ Test RMSE: {rmse:.4f}", flush=True)
-        print(f"✅ Test R2 Score: {r2:.4f}", flush=True)
-except Exception as e:
-    print(f"❌ Evaluation failed: {e}", flush=True)
+        y_pred_scaled = model(X_test_scaled).squeeze().numpy()
+        y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).squeeze()
+        y_true = y_test.values
 
-# === Save trained model ===
-try:
-    model_path = os.path.join(project_root, "model", "mlp_option_pricing.pth")
-    os.makedirs(os.path.dirname(model_path), exist_ok=True)
-    print(f"Saving model to: {model_path}", flush=True)
-    torch.save(model.state_dict(), model_path)
-    print(f"✅ Model saved to {model_path}", flush=True)
-except Exception as e:
-    print(f"❌ Failed to save model: {e}", flush=True)
+    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
+    r2 = r2_score(y_true, y_pred)
+    print(f"📊 {option_type.upper()} | RMSE: {rmse:.4f}, R²: {r2:.4f}")
 
-# === Save scaler ===
-scaler_path = os.path.join(project_root, "model", "scaler.pkl")
-joblib.dump(scaler, scaler_path)
-print(f"✅ Scaler saved to {scaler_path}", flush=True)
-# === Save test set for evaluation ===
-X_test_path = os.path.join(data_dir, "X_test.csv")
-y_test_path = os.path.join(data_dir, "y_test.csv")
-X_test.to_csv(X_test_path, index=False)
-y_test.to_csv(y_test_path, index=False)
-print(f"✅ Test data saved to:\n{X_test_path}\n{y_test_path}", flush=True)
+    # === Save model and scalers ===
+    torch.save(model.state_dict(), os.path.join(model_dir, f"mlp_{option_type}.pth"))
+    joblib.dump(scaler_X, os.path.join(model_dir, f"scaler_{option_type}.pkl"))
+    joblib.dump(scaler_y, os.path.join(model_dir, f"target_scaler_{option_type}.pkl"))
 
+    # === Save test set and predictions ===
+    X_test.to_csv(os.path.join(project_root, "data", f"X_test_{option_type}.csv"), index=False)
+    y_test.to_csv(os.path.join(project_root, "data", f"y_test_{option_type}.csv"), index=False)
+    pd.DataFrame({"MLP_pred": y_pred}).to_csv(os.path.join(project_root, "data", f"y_pred_{option_type}.csv"), index=False)
 
-print("👋 Finished train_model.py", flush=True)
+    print(f"💾 Saved model, scalers, test set and predictions for {option_type.upper()}.")
 
-# === Close log ===
-sys.stdout.close()
+# === Run all 3 models ===
+if __name__ == "__main__":
+    train_model("asian", [])
+    train_model("barrier", ["barrier"])
+    train_model("lookback", [])
